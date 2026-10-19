@@ -9,6 +9,9 @@
   --teal:#1F5C57;
   --teal-deep:#163F3C;
   --clay:#C4612E;
+  --pink:#E0527E;
+  --pink-soft:#F6B9CE;
+  --coral:#F2805A;
   --cream:#FBF6EC;
   --line: rgba(43,38,33,0.14);
   color-scheme: light;
@@ -21,6 +24,9 @@
     --teal:#6FBFB6;
     --teal-deep:#8FD6CD;
     --clay:#E8905A;
+    --pink:#F27FA3;
+    --pink-soft:#5A2E3C;
+    --coral:#F6966C;
     --cream:#141B19;
     --line: rgba(237,228,211,0.16);
     color-scheme: dark;
@@ -33,6 +39,9 @@
   --teal:#6FBFB6;
   --teal-deep:#8FD6CD;
   --clay:#E8905A;
+  --pink:#F27FA3;
+  --pink-soft:#5A2E3C;
+  --coral:#F6966C;
   --cream:#141B19;
   --line: rgba(237,228,211,0.16);
   color-scheme: dark;
@@ -68,6 +77,7 @@ p{margin:0;}
 /* ---- hero ---- */
 .hero{
   background:
+    radial-gradient(ellipse 120% 80% at 15% -10%, var(--pink-soft) 0%, transparent 45%),
     radial-gradient(ellipse 120% 80% at 50% -10%, var(--sand-deep), var(--sand) 60%);
   padding-block: 56px 48px;
   border-bottom:1px solid var(--line);
@@ -83,7 +93,9 @@ p{margin:0;}
   font-weight:600;
   font-size:0.78rem;
   letter-spacing:0.08em;
-  border:1.5px solid var(--ink);
+  border:1.5px solid var(--pink);
+  color:var(--pink);
+  background:var(--pink-soft);
   border-radius:999px;
   padding:6px 14px;
   white-space:nowrap;
@@ -113,6 +125,10 @@ p{margin:0;}
 }
 .stat .n{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--teal);line-height:1;}
 .stat .l{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;opacity:0.75;margin-top:4px;}
+.hero-stats .stat:nth-child(1) .n{color:var(--teal);}
+.hero-stats .stat:nth-child(2) .n{color:var(--coral);}
+.hero-stats .stat:nth-child(3) .n{color:var(--pink);}
+.hero-stats .stat:nth-child(4) .n{color:var(--clay);}
 
 .seam{
   display:block;width:100%;height:28px;margin-top:-1px;
@@ -142,6 +158,9 @@ section.band{padding-block:52px;}
   flex:none;width:7px;height:7px;border-radius:50%;
   background:var(--clay);margin-top:7px;
 }
+.item:nth-child(3n+1) .dot{background:var(--pink);}
+.item:nth-child(3n+2) .dot{background:var(--coral);}
+.item:nth-child(3n+3) .dot{background:var(--teal);}
 .item span{font-size:0.96rem;}
 
 /* itinerary timeline */
@@ -169,25 +188,25 @@ section.band{padding-block:52px;}
 .day-desc{font-size:0.94rem;opacity:0.85;margin-top:6px;max-width:58ch;}
 .day-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
 .tag{
-  font-size:0.72rem;border:1px solid var(--line);border-radius:999px;
-  padding:4px 10px;opacity:0.8;
+  font-size:0.72rem;border:1px solid var(--pink-soft);border-radius:999px;
+  padding:4px 10px;opacity:0.9;color:var(--pink);
 }
 
 /* pricing */
 .price-card{
-  background:var(--teal-deep);
+  background:linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-deep) 55%, #7A3254 100%);
   color:var(--cream);
   border-radius:20px;
-  padding:32px 28px;
+  padding:28px 28px;
   position:relative;
   overflow:hidden;
 }
-:root[data-theme="dark"] .price-card{color:var(--teal-deep) ;background:var(--sand-deep);color:var(--ink);}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .price-card{background:var(--sand-deep);color:var(--ink);}}
-.price-card .eyebrow{color:var(--clay);}
+:root[data-theme="dark"] .price-card{color:var(--teal-deep) ;background:linear-gradient(135deg, var(--sand-deep) 0%, var(--sand-deep) 55%, #3A2230 100%);color:var(--ink);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .price-card{background:linear-gradient(135deg, var(--sand-deep) 0%, var(--sand-deep) 55%, #3A2230 100%);color:var(--ink);}}
+.price-card .eyebrow{color:#F6B9CE;}
 .price-num{
   font-family:'Fraunces',serif;font-weight:600;
-  font-size:clamp(2.4rem,8vw,3.4rem);
+  font-size:clamp(1.7rem,5.5vw,2.2rem);
   margin-top:6px;
 }
 .price-num small{font-size:0.9rem;font-weight:500;opacity:0.75;}
@@ -201,6 +220,7 @@ section.band{padding-block:52px;}
 .urgency{
   text-align:center;padding-block:40px;
 }
+.urgency .eyebrow{color:var(--pink);}
 .urgency h2{font-size:clamp(1.9rem,7vw,2.6rem);}
 .urgency p{margin-top:10px;opacity:0.8;}
 
@@ -231,7 +251,7 @@ form{
   font-size:0.96rem;
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
 }
-.btn-primary{background:var(--teal);color:var(--cream);}
+.btn-primary{background:linear-gradient(120deg, var(--teal) 0%, var(--pink) 130%);color:var(--cream);}
 .btn-primary:active{transform:scale(0.99);}
 .btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
 .btn:disabled{opacity:0.5;cursor:not-allowed;}
@@ -271,7 +291,7 @@ footer a{color:var(--teal);text-decoration:none;font-weight:600;}
 <header class="hero">
   <div class="wrap">
     <div class="hero-top">
-      <span class="eyebrow">Escapism Trip Nº01 · Dec 2–8, 2026</span>
+      <span class="eyebrow">Escapism Trip · Dec 2–8, 2026</span>
       <span class="badge-girls">8 girls only</span>
     </div>
     <h1>Taghazout<br>girls surf retreat</h1>
@@ -468,7 +488,7 @@ footer a{color:var(--teal);text-decoration:none;font-weight:600;}
 </main>
 
 <footer>
-  Escapism Trip Nº01 · Taghazout, Morocco · DM <a href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener">@sywar.rezgui</a>
+  Escapism Trip · Taghazout, Morocco · DM <a href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener">@sywar.rezgui</a>
 </footer>
 
 <script>
