@@ -3,39 +3,15 @@
 <style>
 /* layout: a vertical scrapbook of coastal bands — hero, included, a day-by-day journal timeline, pricing, and a DM-based signup — divided by hand-drawn wave seams instead of hard lines */
 :root{
-  --sand:#F1E6D3;
-  --sand-deep:#E3D2B4;
+  --sand:#F6E7B2;
+  --sand-deep:#EFD989;
   --ink:#2B2621;
   --teal:#1F5C57;
   --teal-deep:#163F3C;
   --clay:#C4612E;
-  --cream:#FBF6EC;
+  --cream:#FFFBEF;
   --line: rgba(43,38,33,0.14);
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --sand:#1B2624;
-    --sand-deep:#162019;
-    --ink:#EDE4D3;
-    --teal:#6FBFB6;
-    --teal-deep:#8FD6CD;
-    --clay:#E8905A;
-    --cream:#141B19;
-    --line: rgba(237,228,211,0.16);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"]{
-  --sand:#1B2624;
-  --sand-deep:#162019;
-  --ink:#EDE4D3;
-  --teal:#6FBFB6;
-  --teal-deep:#8FD6CD;
-  --clay:#E8905A;
-  --cream:#141B19;
-  --line: rgba(237,228,211,0.16);
-  color-scheme: dark;
 }
 
 *{box-sizing:border-box;}
@@ -158,8 +134,6 @@ section.band{padding-block:52px;}
   font-size:1.9rem;color:var(--sand-deep);
   line-height:1;
 }
-:root[data-theme="dark"] .daynum{color:var(--teal-deep);opacity:0.35;}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .daynum{color:var(--teal-deep);opacity:0.35;}}
 .day-meta{
   display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
   margin-bottom:4px;
@@ -182,8 +156,6 @@ section.band{padding-block:52px;}
   position:relative;
   overflow:hidden;
 }
-:root[data-theme="dark"] .price-card{color:var(--teal-deep) ;background:var(--sand-deep);color:var(--ink);}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .price-card{background:var(--sand-deep);color:var(--ink);}}
 .price-card .eyebrow{color:var(--clay);}
 .price-num{
   font-family:'Fraunces',serif;font-weight:600;
