@@ -236,25 +236,14 @@ form{
 .btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
 .btn:disabled{opacity:0.5;cursor:not-allowed;}
 
-.summary-box{
-  display:none;
-  margin-top:22px;
-  background:var(--sand);
+.form-embed-wrap{
+  margin-top:24px;
   border:1px solid var(--line);
-  border-radius:14px;
-  padding:18px;
+  border-radius:16px;
+  overflow:hidden;
+  background:var(--cream);
 }
-.summary-box.show{display:block;}
-.summary-box pre{
-  white-space:pre-wrap;
-  font-family:'Work Sans',sans-serif;
-  font-size:0.92rem;
-  margin:0 0 14px 0;
-  line-height:1.6;
-}
-.summary-actions{display:flex;gap:10px;flex-wrap:wrap;}
-.copied-note{font-size:0.82rem;color:var(--teal);font-weight:600;display:none;align-items:center;gap:6px;}
-.copied-note.show{display:inline-flex;}
+.form-embed-wrap iframe{display:block;border:none;}
 
 footer{
   padding-block:36px;
@@ -423,60 +412,16 @@ footer a{color:var(--teal);text-decoration:none;font-weight:600;}
         <h2>Save your spot</h2>
       </div>
 
-      <form id="signupForm">
-        <div class="row2">
-          <div class="field">
-            <label for="fname">First name</label>
-            <input id="fname" name="fname" type="text" required autocomplete="given-name">
-          </div>
-          <div class="field">
-            <label for="ig">Instagram handle</label>
-            <input id="ig" name="ig" type="text" placeholder="@yourname" required>
-          </div>
-        </div>
-
-        <div class="row2">
-          <div class="field">
-            <label for="phone">WhatsApp number</label>
-            <input id="phone" name="phone" type="tel" placeholder="+216 ..." required>
-          </div>
-          <div class="field">
-            <label for="spots">Number of spots</label>
-            <select id="spots" name="spots" required>
-              <option value="1" selected>1 (just me)</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="flight">Want help booking your flight?</label>
-          <select id="flight" name="flight">
-            <option value="Yes, book it for me" selected>Yes, book it for me</option>
-            <option value="No, I'll sort my own flight">No, I'll sort my own flight</option>
-            <option value="Not sure yet">Not sure yet</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="notes">Anything we should know? (optional)</label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Dietary needs, surf experience, questions..."></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Generate my sign-up message</button>
-      </form>
-
-      <div class="summary-box" id="summaryBox">
-        <pre id="summaryText"></pre>
-        <div class="summary-actions">
-          <button type="button" class="btn btn-primary" id="copyBtn">Copy message</button>
-          <a class="btn btn-ghost" id="dmLink" href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener">Open Instagram DM</a>
-        </div>
-        <p style="margin-top:12px;font-size:0.84rem;opacity:0.75;">Copy the message above, then paste it into your DM to <strong>@sywar.rezgui</strong> to lock in your spot.</p>
-        <span class="copied-note" id="copiedNote">✓ Copied — now paste it in your DM</span>
+      <div class="form-embed-wrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfol_vWTu0Ab7ZgnoiXjoSNAJtAghSVi_3Lh29Q22SSvLo8Vg/viewform?embedded=true"
+          width="100%" height="1250" frameborder="0" marginheight="0" marginwidth="0"
+          title="Taghazout Girls Retreat sign-up form">Loading…</iframe>
       </div>
+
+      <p style="margin-top:18px;font-size:0.86rem;opacity:0.7;">
+        Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfol_vWTu0Ab7ZgnoiXjoSNAJtAghSVi_3Lh29Q22SSvLo8Vg/viewform" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">Open it in a new tab</a> instead, or DM <a href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">@sywar.rezgui</a> directly.
+      </p>
     </div>
   </section>
 </main>
@@ -485,57 +430,3 @@ footer a{color:var(--teal);text-decoration:none;font-weight:600;}
   Escapism Trip Nº01 · Taghazout, Morocco · DM <a href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener">@sywar.rezgui</a>
 </footer>
 
-<script>
-(function(){
-  var form = document.getElementById('signupForm');
-  var box = document.getElementById('summaryBox');
-  var text = document.getElementById('summaryText');
-  var copyBtn = document.getElementById('copyBtn');
-  var copiedNote = document.getElementById('copiedNote');
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var fname = document.getElementById('fname').value.trim();
-    var ig = document.getElementById('ig').value.trim();
-    var phone = document.getElementById('phone').value.trim();
-    var spots = document.getElementById('spots').value;
-    var flight = document.getElementById('flight').value;
-    var notes = document.getElementById('notes').value.trim();
-
-    var msg =
-      "Hiii! I want to join the Taghazout girls surf retreat (Dec 2-8, 2026) 🌊\n\n" +
-      "Name: " + fname + "\n" +
-      "Instagram: " + ig + "\n" +
-      "WhatsApp: " + phone + "\n" +
-      "Spots: " + spots + "\n" +
-      "Flight help: " + flight +
-      (notes ? ("\nNotes: " + notes) : "");
-
-    text.textContent = msg;
-    box.classList.add('show');
-    copiedNote.classList.remove('show');
-    box.scrollIntoView({behavior:'smooth', block:'nearest'});
-  });
-
-  copyBtn.addEventListener('click', function(){
-    var msg = text.textContent;
-    function fallback(){
-      var ta = document.createElement('textarea');
-      ta.value = msg;
-      ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta);
-      ta.focus(); ta.select();
-      try{ document.execCommand('copy'); }catch(err){}
-      document.body.removeChild(ta);
-      copiedNote.classList.add('show');
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(msg).then(function(){
-        copiedNote.classList.add('show');
-      }).catch(fallback);
-    } else {
-      fallback();
-    }
-  });
-})();
-</script>
