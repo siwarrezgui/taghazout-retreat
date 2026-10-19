@@ -1,0 +1,541 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Taghazout Girls Retreat</title>
+<style>
+/* layout: a vertical scrapbook of coastal bands — hero, included, a day-by-day journal timeline, pricing, and a DM-based signup — divided by hand-drawn wave seams instead of hard lines */
+:root{
+  --sand:#F1E6D3;
+  --sand-deep:#E3D2B4;
+  --ink:#2B2621;
+  --teal:#1F5C57;
+  --teal-deep:#163F3C;
+  --clay:#C4612E;
+  --cream:#FBF6EC;
+  --line: rgba(43,38,33,0.14);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --sand:#1B2624;
+    --sand-deep:#162019;
+    --ink:#EDE4D3;
+    --teal:#6FBFB6;
+    --teal-deep:#8FD6CD;
+    --clay:#E8905A;
+    --cream:#141B19;
+    --line: rgba(237,228,211,0.16);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --sand:#1B2624;
+  --sand-deep:#162019;
+  --ink:#EDE4D3;
+  --teal:#6FBFB6;
+  --teal-deep:#8FD6CD;
+  --clay:#E8905A;
+  --cream:#141B19;
+  --line: rgba(237,228,211,0.16);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{
+  font-family:'Fraunces', Georgia, serif;
+  font-weight:600;
+  text-wrap:balance;
+  margin:0;
+}
+p{margin:0;}
+.wrap{max-width:720px;margin:0 auto;}
+.eyebrow{
+  font-family:'Work Sans',sans-serif;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-size:0.72rem;
+  color:var(--clay);
+}
+
+/* ---- hero ---- */
+.hero{
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, var(--sand-deep), var(--sand) 60%);
+  padding-block: 56px 48px;
+  border-bottom:1px solid var(--line);
+}
+.hero-top{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;
+  margin-bottom:40px;
+}
+.hero-top .eyebrow{color:var(--teal-deep);}
+.badge-girls{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:0.78rem;
+  letter-spacing:0.08em;
+  border:1.5px solid var(--ink);
+  border-radius:999px;
+  padding:6px 14px;
+  white-space:nowrap;
+}
+.hero h1{
+  font-size:clamp(2.6rem, 9vw, 4.4rem);
+  line-height:0.98;
+  letter-spacing:-0.01em;
+}
+.hero .sub{
+  margin-top:18px;
+  font-size:1.15rem;
+  max-width:34ch;
+  color:var(--ink);
+  opacity:0.88;
+}
+.hero-stats{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-top:32px;
+}
+.stat{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 18px;
+  min-width:112px;
+}
+.stat .n{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--teal);line-height:1;}
+.stat .l{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;opacity:0.75;margin-top:4px;}
+
+.seam{
+  display:block;width:100%;height:28px;margin-top:-1px;
+}
+
+/* ---- sections ---- */
+section.band{padding-block:52px;}
+.band.alt{background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.section-head{margin-bottom:28px;}
+.section-head h2{font-size:clamp(1.7rem,5vw,2.3rem);margin-top:6px;}
+
+/* included grid */
+.included{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:8px;
+}
+@media (max-width:480px){.included{grid-template-columns:1fr;}}
+.item{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:14px 4px;
+  border-bottom:1px solid var(--line);
+  min-width:0;
+}
+.item .dot{
+  flex:none;width:7px;height:7px;border-radius:50%;
+  background:var(--clay);margin-top:7px;
+}
+.item span{font-size:0.96rem;}
+
+/* itinerary timeline */
+.day-row{
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:16px;
+  padding-block:22px;
+  border-top:1px solid var(--line);
+}
+.day-row:first-child{border-top:none;}
+.daynum{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:1.9rem;color:var(--sand-deep);
+  line-height:1;
+}
+:root[data-theme="dark"] .daynum{color:var(--teal-deep);opacity:0.35;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .daynum{color:var(--teal-deep);opacity:0.35;}}
+.day-meta{
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+  margin-bottom:4px;
+}
+.day-date{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--clay);font-weight:600;}
+.day-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;}
+.day-desc{font-size:0.94rem;opacity:0.85;margin-top:6px;max-width:58ch;}
+.day-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.tag{
+  font-size:0.72rem;border:1px solid var(--line);border-radius:999px;
+  padding:4px 10px;opacity:0.8;
+}
+
+/* pricing */
+.price-card{
+  background:var(--teal-deep);
+  color:var(--cream);
+  border-radius:20px;
+  padding:32px 28px;
+  position:relative;
+  overflow:hidden;
+}
+:root[data-theme="dark"] .price-card{color:var(--teal-deep) ;background:var(--sand-deep);color:var(--ink);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .price-card{background:var(--sand-deep);color:var(--ink);}}
+.price-card .eyebrow{color:var(--clay);}
+.price-num{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(2.4rem,8vw,3.4rem);
+  margin-top:6px;
+}
+.price-num small{font-size:0.9rem;font-weight:500;opacity:0.75;}
+.price-note{margin-top:6px;font-size:0.9rem;opacity:0.82;max-width:48ch;}
+.flight-note{
+  margin-top:20px;padding-top:18px;border-top:1px solid rgba(251,246,236,0.22);
+  font-size:0.9rem;opacity:0.9;max-width:48ch;
+}
+
+/* only 8 spots */
+.urgency{
+  text-align:center;padding-block:40px;
+}
+.urgency h2{font-size:clamp(1.9rem,7vw,2.6rem);}
+.urgency p{margin-top:10px;opacity:0.8;}
+
+/* form */
+form{
+  display:flex;flex-direction:column;gap:14px;margin-top:24px;
+}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-size:0.82rem;font-weight:600;letter-spacing:0.02em;}
+.field input, .field textarea, .field select{
+  font:inherit;
+  background:var(--cream);
+  color:var(--ink);
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  padding:11px 13px;
+  width:100%;
+}
+.field input:focus, .field textarea:focus, .field select:focus{
+  outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal);
+}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media (max-width:480px){.row2{grid-template-columns:1fr;}}
+.btn{
+  font-family:'Work Sans',sans-serif;font-weight:600;
+  border:none;border-radius:999px;
+  padding:14px 22px;cursor:pointer;
+  font-size:0.96rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-primary{background:var(--teal);color:var(--cream);}
+.btn-primary:active{transform:scale(0.99);}
+.btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+.summary-box{
+  display:none;
+  margin-top:22px;
+  background:var(--sand);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+}
+.summary-box.show{display:block;}
+.summary-box pre{
+  white-space:pre-wrap;
+  font-family:'Work Sans',sans-serif;
+  font-size:0.92rem;
+  margin:0 0 14px 0;
+  line-height:1.6;
+}
+.summary-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.copied-note{font-size:0.82rem;color:var(--teal);font-weight:600;display:none;align-items:center;gap:6px;}
+.copied-note.show{display:inline-flex;}
+
+footer{
+  padding-block:36px;
+  text-align:center;
+  font-size:0.84rem;
+  opacity:0.65;
+}
+footer a{color:var(--teal);text-decoration:none;font-weight:600;}
+
+.hosts-line{
+  margin-top:26px;font-size:0.95rem;opacity:0.85;max-width:50ch;
+}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap">
+
+<svg style="display:none">
+  <symbol id="wave" viewBox="0 0 1200 28" preserveAspectRatio="none">
+    <path d="M0 14 Q 50 0, 100 14 T 200 14 T 300 14 T 400 14 T 500 14 T 600 14 T 700 14 T 800 14 T 900 14 T 1000 14 T 1100 14 T 1200 14 V28 H0 Z"/>
+  </symbol>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="eyebrow">Escapism Trip Nº01 · Dec 2–8, 2026</span>
+      <span class="badge-girls">8 girls only</span>
+    </div>
+    <h1>Taghazout<br>girls surf retreat</h1>
+    <p class="sub">No travel buddy needed, zero planning. Just you, the ocean, and 8 new best friends on the Moroccan coast.</p>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="n">7</div><div class="l">days</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">nights</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">surf sessions</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">yoga sessions</div></div>
+    </div>
+
+    <p class="hosts-line">Hosted by the yes girl 🌊 and the calm in the chaos 📋 — two totally opposite besties who've run every girls trip so far, and this one's the biggest yet.</p>
+  </div>
+  <svg class="seam" viewBox="0 0 1200 28" preserveAspectRatio="none"><use href="#wave" fill="var(--cream)"/></svg>
+</header>
+
+<main>
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What's included</span>
+        <h2>Everything's handled</h2>
+      </div>
+      <div class="included">
+        <div class="item"><span class="dot"></span><span>6 nights accommodation + daily breakfast</span></div>
+        <div class="item"><span class="dot"></span><span>4 surf sessions — local instructors & all equipment</span></div>
+        <div class="item"><span class="dot"></span><span>2 chill yoga sessions on the beach</span></div>
+        <div class="item"><span class="dot"></span><span>Paradise Valley road trip & natural pools</span></div>
+        <div class="item"><span class="dot"></span><span>Sandboarding in the dunes</span></div>
+        <div class="item"><span class="dot"></span><span>Golden hour at the skatepark</span></div>
+        <div class="item"><span class="dot"></span><span>1 dance class — music on, inhibitions off</span></div>
+        <div class="item"><span class="dot"></span><span>Welcome dinner + a cooked-together lunch</span></div>
+        <div class="item"><span class="dot"></span><span>Bonfire DJ party, last night</span></div>
+        <div class="item"><span class="dot"></span><span>Airport pickup & all local transport</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Day by day</span>
+        <h2>The itinerary</h2>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">01</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Wed · Dec 2</span><span class="day-title">Hello, Taghazout</span></div>
+          <p class="day-desc">Airport pickup, check-in, meet the girls, then a cosy welcome dinner together.</p>
+          <div class="day-tags"><span class="tag">Airport pickup</span><span class="tag">Check-in</span><span class="tag">Welcome dinner</span></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">02</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Thu · Dec 3</span><span class="day-title">Salt water & sunrise</span></div>
+          <p class="day-desc">A beach yoga flow to wake the body, first surf lesson, golden hour at the skatepark.</p>
+          <div class="day-tags"><span class="tag">Yoga 1/2</span><span class="tag">Surf 1/4</span><span class="tag">Skatepark</span></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">03</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Fri · Dec 4</span><span class="day-title">Cook, surf, dance</span></div>
+          <p class="day-desc">A morning in the ocean, lunch cooked together, then a dance class — no inhibitions allowed.</p>
+          <div class="day-tags"><span class="tag">Surf 2/4</span><span class="tag">Cooking lunch</span><span class="tag">Dance class</span></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">04</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Sat · Dec 5</span><span class="day-title">Road trip day</span></div>
+          <p class="day-desc">Playlist on, windows down — a full day in the mountains at Paradise Valley: turquoise pools, palm trees, rock jumps.</p>
+          <div class="day-tags"><span class="tag">Paradise Valley</span><span class="tag">Natural pools</span></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">05</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Sun · Dec 6</span><span class="day-title">Flow & glow</span></div>
+          <p class="day-desc">Second yoga session, another surf, then a free afternoon — pool, cafés, a nap, or a sunset walk.</p>
+          <div class="day-tags"><span class="tag">Yoga 2/2</span><span class="tag">Surf 3/4</span><span class="tag">Free afternoon</span></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">06</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Mon · Dec 7</span><span class="day-title">Last night magic</span></div>
+          <p class="day-desc">One final surf, sliding down golden dunes, then closing the week with music and a DJ party.</p>
+          <div class="day-tags"><span class="tag">Surf 4/4</span><span class="tag">Sandboarding</span><span class="tag">DJ party</span></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="daynum">07</div>
+        <div>
+          <div class="day-meta"><span class="day-date">Tue · Dec 8</span><span class="day-title">See you soon</span></div>
+          <p class="day-desc">One last look at the ocean, big hugs, and an airport drop-off.</p>
+          <div class="day-tags"><span class="tag">Check-out</span><span class="tag">Airport drop-off</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The investment</span>
+        <h2>Price</h2>
+      </div>
+      <div class="price-card">
+        <span class="eyebrow">Trip package</span>
+        <div class="price-num">2,100 TND <small>/ person</small></div>
+        <p class="price-note">Covers the full 6-night package above: stay, breakfast, 4 surf days, 2 yoga sessions, Paradise Valley, sandboarding, welcome dinner, DJ party & dance class, and all local transport + airport pickup.</p>
+        <div class="flight-note">Flights not included. Want us to book yours too? We look up the exact fare on the day you confirm your spot and add it to your total — so you get the most accurate rate.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt urgency">
+    <div class="wrap">
+      <span class="eyebrow">Only 8 spots</span>
+      <h2>8 girls. 7 days.<br>1 big yes.</h2>
+      <p>Fill out the form below to save your spot before the escape is fully booked.</p>
+    </div>
+  </section>
+
+  <section class="band" id="signup">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Are you in?</span>
+        <h2>Save your spot</h2>
+      </div>
+
+      <form id="signupForm">
+        <div class="row2">
+          <div class="field">
+            <label for="fname">First name</label>
+            <input id="fname" name="fname" type="text" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="ig">Instagram handle</label>
+            <input id="ig" name="ig" type="text" placeholder="@yourname" required>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="phone">WhatsApp number</label>
+            <input id="phone" name="phone" type="tel" placeholder="+216 ..." required>
+          </div>
+          <div class="field">
+            <label for="spots">Number of spots</label>
+            <select id="spots" name="spots" required>
+              <option value="1" selected>1 (just me)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="flight">Want help booking your flight?</label>
+          <select id="flight" name="flight">
+            <option value="Yes, book it for me" selected>Yes, book it for me</option>
+            <option value="No, I'll sort my own flight">No, I'll sort my own flight</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything we should know? (optional)</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Dietary needs, surf experience, questions..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Generate my sign-up message</button>
+      </form>
+
+      <div class="summary-box" id="summaryBox">
+        <pre id="summaryText"></pre>
+        <div class="summary-actions">
+          <button type="button" class="btn btn-primary" id="copyBtn">Copy message</button>
+          <a class="btn btn-ghost" id="dmLink" href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener">Open Instagram DM</a>
+        </div>
+        <p style="margin-top:12px;font-size:0.84rem;opacity:0.75;">Copy the message above, then paste it into your DM to <strong>@sywar.rezgui</strong> to lock in your spot.</p>
+        <span class="copied-note" id="copiedNote">✓ Copied — now paste it in your DM</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Escapism Trip Nº01 · Taghazout, Morocco · DM <a href="https://instagram.com/sywar.rezgui" target="_blank" rel="noopener">@sywar.rezgui</a>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('signupForm');
+  var box = document.getElementById('summaryBox');
+  var text = document.getElementById('summaryText');
+  var copyBtn = document.getElementById('copyBtn');
+  var copiedNote = document.getElementById('copiedNote');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var fname = document.getElementById('fname').value.trim();
+    var ig = document.getElementById('ig').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var spots = document.getElementById('spots').value;
+    var flight = document.getElementById('flight').value;
+    var notes = document.getElementById('notes').value.trim();
+
+    var msg =
+      "Hiii! I want to join the Taghazout girls surf retreat (Dec 2-8, 2026) 🌊\n\n" +
+      "Name: " + fname + "\n" +
+      "Instagram: " + ig + "\n" +
+      "WhatsApp: " + phone + "\n" +
+      "Spots: " + spots + "\n" +
+      "Flight help: " + flight +
+      (notes ? ("\nNotes: " + notes) : "");
+
+    text.textContent = msg;
+    box.classList.add('show');
+    copiedNote.classList.remove('show');
+    box.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+
+  copyBtn.addEventListener('click', function(){
+    var msg = text.textContent;
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = msg;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try{ document.execCommand('copy'); }catch(err){}
+      document.body.removeChild(ta);
+      copiedNote.classList.add('show');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(msg).then(function(){
+        copiedNote.classList.add('show');
+      }).catch(fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
