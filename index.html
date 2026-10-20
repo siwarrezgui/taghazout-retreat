@@ -163,15 +163,15 @@ a{color:inherit;}
 .band.sky{background:var(--sky);color:var(--ink);}
 
 /* ---------- included ---------- */
-.included-grid{margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.included-grid{margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);}
 @media (max-width:640px){.included-grid{grid-template-columns:1fr;}}
 .included-item{
-  background:var(--cream);border:2.5px solid var(--ink);border-radius:14px;
-  padding:16px 18px;display:flex;gap:12px;align-items:flex-start;
-  box-shadow:3px 3px 0 var(--ink);
+  padding:16px 0;border-top:1.5px solid rgba(58,43,29,0.14);
+  display:flex;gap:12px;align-items:baseline;
 }
-.included-item .mark{flex:none;font-size:1.1rem;line-height:1;margin-top:1px;}
-.included-item span.txt{font-size:0.98rem;font-weight:700;}
+.included-item:nth-child(odd){padding-right:28px;}
+.included-item .mark{flex:none;width:7px;height:7px;border-radius:50%;background:var(--coral);margin-top:2px;align-self:flex-start;}
+.included-item span.txt{font-size:1rem;font-weight:600;}
 
 /* ---------- itinerary ---------- */
 .timeline{margin-top:30px;}
@@ -181,13 +181,11 @@ a{color:inherit;}
 }
 .day-row:first-child{border-top:none;}
 .day-badge{
-  width:64px;height:64px;border-radius:50%;border:3px solid var(--ink);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-display);font-weight:800;font-size:1.3rem;
-  background:var(--coral);color:#fff;box-shadow:3px 3px 0 var(--ink);
+  font-family:var(--font-display);font-weight:800;font-size:2.1rem;line-height:1;
+  color:var(--coral);padding-top:2px;
 }
-.day-row:nth-child(2n) .day-badge{background:var(--sky);}
-.day-row:nth-child(3n) .day-badge{background:var(--mint);color:var(--ink);}
+.day-row:nth-child(2n) .day-badge{color:var(--sky-deep);}
+.day-row:nth-child(3n) .day-badge{color:#5CAE86;}
 .day-meta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:5px;}
 .day-date{font-size:0.78rem;font-weight:800;color:var(--coral-deep);}
 .day-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;}
@@ -201,17 +199,16 @@ a{color:inherit;}
 /* ---------- price ---------- */
 .price-wrap{display:flex;}
 .price-card{
-  background:var(--coral);color:#fff;border:3px solid var(--ink);border-radius:24px;
-  padding:clamp(28px,5vw,44px);width:100%;position:relative;overflow:hidden;
-  box-shadow:6px 6px 0 var(--ink);
+  background:var(--butter-deep);color:var(--ink);border-radius:20px;
+  padding:clamp(24px,5vw,36px);width:100%;position:relative;overflow:hidden;
 }
 .price-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
-.price-num{font-family:var(--font-display);font-weight:800;font-size:clamp(2.4rem,6.6vw,3.3rem);line-height:1;}
-.price-num small{font-family:var(--font-body);font-size:1rem;font-weight:700;opacity:0.85;}
-.price-note{margin-top:18px;font-size:0.98rem;opacity:0.95;max-width:50ch;font-weight:600;}
+.price-num{font-family:var(--font-display);font-weight:800;font-size:clamp(2.2rem,6vw,3rem);line-height:1;color:var(--coral-deep);}
+.price-num small{font-family:var(--font-body);font-size:1rem;font-weight:700;opacity:0.75;color:var(--ink);}
+.price-note{margin-top:16px;font-size:0.98rem;opacity:0.85;max-width:50ch;font-weight:500;}
 .flight-note{
-  margin-top:22px;padding-top:18px;border-top:2px dashed rgba(255,255,255,0.5);
-  font-size:0.92rem;opacity:0.9;max-width:50ch;font-weight:600;
+  margin-top:20px;padding-top:16px;border-top:1.5px solid rgba(58,43,29,0.18);
+  font-size:0.92rem;opacity:0.78;max-width:50ch;font-weight:500;
 }
 
 /* ---------- marquee urgency ---------- */
@@ -312,16 +309,16 @@ footer a{color:var(--coral);text-decoration:none;font-weight:800;}
       <p class="kicker">What's included</p>
       <h2 class="h2">Everything's handled</h2>
       <div class="included-grid">
-        <div class="included-item"><span class="mark">🏠</span><span class="txt">6 nights accommodation + daily breakfast</span></div>
-        <div class="included-item"><span class="mark">🏄‍♀️</span><span class="txt">4 surf sessions — local instructors & all equipment</span></div>
-        <div class="included-item"><span class="mark">🧘‍♀️</span><span class="txt">2 chill yoga sessions on the beach</span></div>
-        <div class="included-item"><span class="mark">🏔️</span><span class="txt">Paradise Valley road trip & natural pools</span></div>
-        <div class="included-item"><span class="mark">🏜️</span><span class="txt">Sandboarding in the dunes</span></div>
-        <div class="included-item"><span class="mark">🛹</span><span class="txt">Golden hour at the skatepark</span></div>
-        <div class="included-item"><span class="mark">💃</span><span class="txt">1 dance class — music on, inhibitions off</span></div>
-        <div class="included-item"><span class="mark">🍽️</span><span class="txt">Welcome dinner + a cooked-together lunch</span></div>
-        <div class="included-item"><span class="mark">🔥</span><span class="txt">Bonfire DJ party, last night</span></div>
-        <div class="included-item"><span class="mark">🚐</span><span class="txt">Airport pickup & all local transport</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">6 nights accommodation + daily breakfast</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">4 surf sessions — local instructors & all equipment</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">2 chill yoga sessions on the beach</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">Paradise Valley road trip & natural pools</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">Sandboarding in the dunes</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">Golden hour at the skatepark</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">1 dance class — music on, inhibitions off</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">Welcome dinner + a cooked-together lunch</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">Bonfire DJ party, last night</span></div>
+        <div class="included-item"><span class="mark"></span><span class="txt">Airport pickup & all local transport</span></div>
       </div>
     </div>
   </section>
@@ -401,7 +398,7 @@ footer a{color:var(--coral);text-decoration:none;font-weight:800;}
       <div class="price-card">
         <div class="price-top">
           <div>
-            <p class="kicker" style="color:#fff">The investment</p>
+            <p class="kicker">The investment</p>
             <div class="price-num">2,100 TND <small>/ person</small></div>
           </div>
         </div>
