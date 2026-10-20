@@ -24,6 +24,7 @@
   --line:#3A2B1D;
   --font-display:'Baloo 2','Nunito',sans-serif;
   --font-body:'Nunito',ui-sans-serif,system-ui,sans-serif;
+  --font-serif:'Fraunces','Georgia',serif;
   color-scheme: light;
 }
 
@@ -159,7 +160,7 @@ a{color:inherit;}
 /* ---------- bands ---------- */
 .band{padding-block:58px 64px;}
 .band.cream{background:var(--cream);color:var(--ink);}
-.band.butter{background:var(--butter-deep);color:var(--ink);}
+.band.butter{background:var(--butter);color:var(--ink);}
 .band.sky{background:var(--sky);color:var(--ink);}
 
 /* ---------- included ---------- */
@@ -174,26 +175,23 @@ a{color:inherit;}
 .included-item span.txt{font-size:1rem;font-weight:600;}
 
 /* ---------- itinerary ---------- */
-.timeline{margin-top:30px;}
+.timeline{margin-top:30px;border-top:1.5px solid rgba(58,43,29,0.14);}
 .day-row{
   display:grid;grid-template-columns:84px 1fr;gap:18px;
-  padding-block:22px;border-top:2.5px dashed var(--ink);
+  padding-block:26px;border-bottom:1.5px solid rgba(58,43,29,0.14);
 }
-.day-row:first-child{border-top:none;}
 .day-badge{
-  font-family:var(--font-display);font-weight:800;font-size:2.1rem;line-height:1;
-  color:var(--coral);padding-top:2px;
+  font-family:var(--font-serif);font-weight:400;font-size:clamp(2.2rem,5.6vw,2.9rem);line-height:1;
+  color:#D4B483;
 }
-.day-row:nth-child(2n) .day-badge{color:var(--sky-deep);}
-.day-row:nth-child(3n) .day-badge{color:#5CAE86;}
-.day-meta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:5px;}
-.day-date{font-size:0.78rem;font-weight:800;color:var(--coral-deep);}
-.day-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;}
-.day-desc{font-size:0.96rem;opacity:0.82;margin-top:5px;max-width:58ch;}
-.day-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;}
+.day-meta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px;}
+.day-date{font-size:0.74rem;font-weight:800;color:var(--coral-deep);text-transform:uppercase;letter-spacing:0.06em;}
+.day-title{font-family:var(--font-serif);font-size:1.3rem;font-weight:700;}
+.day-desc{font-size:0.96rem;opacity:0.78;margin-top:6px;max-width:58ch;}
+.day-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
 .tag{
-  font-size:0.76rem;font-weight:700;border:2px solid var(--ink);border-radius:999px;
-  padding:4px 11px;background:var(--cream);
+  font-size:0.78rem;font-weight:600;border:1.5px solid rgba(58,43,29,0.3);border-radius:999px;
+  padding:4px 12px;background:transparent;color:var(--ink-soft);
 }
 
 /* ---------- price ---------- */
@@ -260,7 +258,7 @@ footer a{color:var(--coral);text-decoration:none;font-weight:800;}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,400;0,600;0,700&display=swap">
 
 <nav class="nav" id="siteNav">
   <div class="nav-inner">
@@ -323,7 +321,7 @@ footer a{color:var(--coral);text-decoration:none;font-weight:800;}
     </div>
   </section>
 
-  <svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0,24 C150,0 350,48 600,28 C850,8 1050,44 1200,26 L1200,48 L0,48 Z" fill="#FFE9A8"></path></svg>
+  <svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0,24 C150,0 350,48 600,28 C850,8 1050,44 1200,26 L1200,48 L0,48 Z" fill="#FFF3CE"></path></svg>
 
   <section class="band butter" id="itinerary">
     <div class="wrap">
