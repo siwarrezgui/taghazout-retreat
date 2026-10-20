@@ -1,389 +1,431 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Taghazout Girls Retreat</title>
 <style>
-/* layout: a vertical scrapbook of coastal bands — hero, included, a day-by-day journal timeline, pricing, and a DM-based signup — divided by hand-drawn wave seams instead of hard lines */
+/* ===================================================================
+   Taghazout Girls Surf Retreat — editorial travel-brand redesign
+   Palette: deep ocean-night ink + warm sand, vivid surf teal + coral
+   Type: Bricolage Grotesque (display) + Inter (body/UI)
+   Structure: alternating dark/light bands, diagonal seams, one
+   orchestrated hero entrance, marquee urgency strip, outline day
+   numerals on the itinerary (a genuine sequence).
+   =================================================================== */
+
 :root{
-  --sand:#F1E6D3;
-  --sand-deep:#E3D2B4;
-  --ink:#2B2621;
-  --teal:#1F6B52;
-  --teal-deep:#14503D;
-  --clay:#C4612E;
-  --cream:#FBF6EC;
-  --line: rgba(43,38,33,0.14);
+  --ink:#0B1F1D;
+  --ink-soft:#132D29;
+  --paper:#F3EEE2;
+  --paper-deep:#E7DCC6;
+  --surf:#20C9A6;
+  --coral:#FF5A3C;
+  --cream-text:#F6F1E4;
+  --line-dark: rgba(246,241,228,0.14);
+  --line-light: rgba(11,31,29,0.13);
+  --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
   color-scheme: light;
 }
 
 *{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  background:var(--cream);
+  background:var(--paper);
   color:var(--ink);
-  font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  font-family:var(--font-body);
   font-size:16px;
-  line-height:1.5;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  line-height:1.55;
+  padding-left: max(0px, env(safe-area-inset-left, 0px));
+  padding-right: max(0px, env(safe-area-inset-right, 0px));
 }
-h1,h2,h3{
-  font-family:'Fraunces', Georgia, serif;
-  font-weight:600;
+h1,h2{
+  font-family:var(--font-display);
+  font-weight:800;
+  letter-spacing:-0.02em;
   text-wrap:balance;
   margin:0;
 }
 p{margin:0;}
-.wrap{max-width:720px;margin:0 auto;}
-.eyebrow{
-  font-family:'Work Sans',sans-serif;
+a{color:inherit;}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,56px);}
+
+.kicker{
+  font-family:var(--font-body);
   font-weight:600;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  font-size:0.72rem;
-  color:var(--clay);
+  font-size:0.95rem;
+  color: var(--surf);
+  margin-bottom:14px;
+}
+.kicker.dark{color:#107a62;}
+
+.h2{font-size:clamp(1.9rem,4.6vw,2.7rem);}
+.h2.on-dark{color:var(--cream-text);}
+
+:focus-visible{outline:2px solid var(--surf);outline-offset:3px;border-radius:2px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
 }
 
-/* ---- hero ---- */
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:rgba(11,31,29,0.72);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-dark);
+  transition:background .25s ease;
+}
+.nav.scrolled{background:rgba(11,31,29,0.92);}
+.nav-inner{
+  max-width:1080px;margin:0 auto;padding:14px clamp(20px,5vw,56px);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.wordmark{
+  font-family:var(--font-display);font-weight:800;font-size:1.05rem;
+  color:var(--cream-text);text-decoration:none;white-space:nowrap;
+}
+.wordmark span{color:var(--surf);}
+.nav-links{display:flex;gap:26px;}
+.nav-links a{
+  color:var(--cream-text);opacity:0.78;text-decoration:none;
+  font-size:0.94rem;font-weight:500;transition:opacity .15s ease;
+}
+.nav-links a:hover{opacity:1;}
+@media (max-width:760px){ .nav-links{display:none;} }
+
+.btn{
+  font-family:var(--font-body);font-weight:600;font-size:0.92rem;
+  border:none;border-radius:999px;padding:12px 22px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  text-decoration:none;transition:transform .15s ease, background .15s ease;
+}
+.btn:active{transform:scale(0.97);}
+.btn-nav{background:var(--surf);color:var(--ink);padding:10px 18px;font-size:0.88rem;}
+.btn-primary{background:var(--coral);color:#fff;}
+.btn-primary:hover{background:#ff7256;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line-dark);color:var(--cream-text);}
+.btn-ghost:hover{border-color:var(--cream-text);}
+.btn:disabled{opacity:0.55;cursor:not-allowed;}
+
+/* ---------- hero ---------- */
 .hero{
+  position:relative;overflow:hidden;
+  background:var(--ink);color:var(--cream-text);
+  padding-block:64px 56px;
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
-    radial-gradient(ellipse 120% 80% at 50% -10%, var(--sand-deep), var(--sand) 60%);
-  padding-block: 56px 48px;
-  border-bottom:1px solid var(--line);
+    radial-gradient(520px 420px at 12% -8%, rgba(32,201,166,0.30), transparent 65%),
+    radial-gradient(460px 380px at 96% 18%, rgba(255,90,60,0.22), transparent 60%);
+  animation: driftGlow 16s ease-in-out infinite alternate;
 }
-.hero-top{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;flex-wrap:wrap;
-  margin-bottom:40px;
-}
-.hero-top .eyebrow{color:var(--teal-deep);}
+@keyframes driftGlow{ from{ transform:translateY(0) } to{ transform:translateY(22px) } }
+
+.hero-inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between;}
+.hero-main{flex:1 1 440px;min-width:0;}
 .badge-girls{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:0.78rem;
-  letter-spacing:0.08em;
-  border:1.5px solid var(--ink);
-  border-radius:999px;
-  padding:6px 14px;
-  white-space:nowrap;
+  display:inline-block;margin-bottom:22px;
+  font-family:var(--font-display);font-weight:700;font-size:0.82rem;
+  border:1.5px solid var(--line-dark);border-radius:999px;padding:6px 14px;
 }
-.hero h1{
-  font-size:clamp(2.6rem, 9vw, 4.4rem);
-  line-height:0.98;
-  letter-spacing:-0.01em;
+.hero-title{font-size:clamp(2.7rem,8vw,4.6rem);line-height:0.94;}
+.hero-title .line{display:block;opacity:0;transform:translateY(18px);
+  animation:heroIn .7s cubic-bezier(.2,.7,.2,1) forwards;}
+.hero-title .line:nth-child(1){animation-delay:.05s;}
+.hero-title .line:nth-child(2){animation-delay:.16s;color:var(--surf);}
+@keyframes heroIn{to{opacity:1;transform:none;}}
+
+.hero-sub{
+  margin-top:20px;font-size:1.1rem;max-width:36ch;opacity:0.86;
+  opacity:0; transform:translateY(14px); animation:heroIn .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:.28s;
 }
-.hero .sub{
-  margin-top:18px;
-  font-size:1.15rem;
-  max-width:34ch;
-  color:var(--ink);
-  opacity:0.88;
+.hero-cta{
+  margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;
+  opacity:0; transform:translateY(14px); animation:heroIn .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:.38s;
 }
+
 .hero-stats{
-  display:flex;gap:10px;flex-wrap:wrap;
-  margin-top:32px;
+  flex:0 0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+  opacity:0; transform:translateY(14px); animation:heroIn .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:.48s;
 }
 .stat{
-  background:var(--cream);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px 18px;
-  min-width:112px;
+  background:var(--ink-soft);border:1px solid var(--line-dark);border-radius:14px;
+  padding:16px 20px;min-width:108px;
 }
-.stat .n{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--teal);line-height:1;}
-.stat .l{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;opacity:0.75;margin-top:4px;}
+.stat-n{font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--surf);line-height:1;display:block;}
+.stat-l{font-size:0.78rem;opacity:0.75;margin-top:4px;display:block;}
 
-.seam{
-  display:block;width:100%;height:28px;margin-top:-1px;
+.hero-hosts{position:relative;z-index:1;margin-top:38px;font-size:0.96rem;opacity:0.82;max-width:58ch;}
+
+/* ---------- diagonal seams ---------- */
+.skew-top{
+  position:relative;
+  clip-path: polygon(0 44px, 100% 0, 100% 100%, 0 100%);
+  margin-top:-44px;padding-top:92px;
+}
+@media (max-width:640px){
+  .skew-top{clip-path: polygon(0 22px, 100% 0, 100% 100%, 0 100%); margin-top:-22px;padding-top:60px;}
 }
 
-/* ---- sections ---- */
-section.band{padding-block:52px;}
-.band.alt{background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.section-head{margin-bottom:28px;}
-.section-head h2{font-size:clamp(1.7rem,5vw,2.3rem);margin-top:6px;}
+/* ---------- light / dark bands ---------- */
+.band{padding-bottom:64px;}
+.band.light{background:var(--paper);color:var(--ink);}
+.band.dark{background:var(--ink);color:var(--cream-text);}
 
-/* included grid */
-.included{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:8px;
+/* ---------- included ---------- */
+.included-grid{margin-top:30px;display:grid;grid-template-columns:repeat(2,1fr);}
+@media (max-width:640px){.included-grid{grid-template-columns:1fr;}}
+.included-item{
+  padding:18px 0;border-top:1px solid var(--line-light);
+  display:flex;gap:14px;align-items:baseline;
 }
-@media (max-width:480px){.included{grid-template-columns:1fr;}}
-.item{
-  display:flex;gap:10px;align-items:flex-start;
-  padding:14px 4px;
-  border-bottom:1px solid var(--line);
-  min-width:0;
-}
-.item .dot{
-  flex:none;width:7px;height:7px;border-radius:50%;
-  background:var(--clay);margin-top:7px;
-}
-.item span{font-size:0.96rem;}
+.included-item:nth-child(odd){padding-right:28px;}
+.included-item .mark{flex:none;width:7px;height:7px;border-radius:50%;background:var(--coral);margin-top:8px;}
+.included-item span{font-size:1rem;}
 
-/* itinerary timeline */
+/* ---------- itinerary ---------- */
+.timeline{margin-top:34px;}
 .day-row{
-  display:grid;
-  grid-template-columns:64px 1fr;
-  gap:16px;
-  padding-block:22px;
-  border-top:1px solid var(--line);
+  display:grid;grid-template-columns:96px 1fr;gap:20px;
+  padding-block:26px;border-top:1px solid var(--line-dark);
 }
 .day-row:first-child{border-top:none;}
-.daynum{
-  font-family:'Fraunces',serif;font-weight:600;
-  font-size:1.9rem;color:var(--sand-deep);
-  line-height:1;
+.day-num{
+  font-family:var(--font-display);font-weight:800;line-height:0.85;
+  font-size:clamp(2.6rem,7vw,3.6rem);color:rgba(246,241,228,0.4);
 }
-.day-meta{
-  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
-  margin-bottom:4px;
+@supports (-webkit-text-stroke: 1px black){
+  .day-num{color:transparent;-webkit-text-stroke:1.4px rgba(246,241,228,0.5);}
 }
-.day-date{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--clay);font-weight:600;}
-.day-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;}
-.day-desc{font-size:0.94rem;opacity:0.85;margin-top:6px;max-width:58ch;}
-.day-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-.tag{
-  font-size:0.72rem;border:1px solid var(--line);border-radius:999px;
-  padding:4px 10px;opacity:0.8;
-}
+.day-meta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px;}
+.day-date{font-size:0.78rem;font-weight:600;color:var(--surf);}
+.day-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;}
+.day-desc{font-size:0.96rem;opacity:0.82;margin-top:6px;max-width:58ch;}
+.day-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;}
+.tag{font-size:0.74rem;border:1px solid var(--line-dark);border-radius:999px;padding:4px 11px;opacity:0.85;}
 
-/* pricing */
+/* ---------- price ---------- */
+.price-wrap{display:flex;}
 .price-card{
-  background:var(--teal-deep);
-  color:var(--cream);
-  border-radius:20px;
-  padding:24px 26px;
-  position:relative;
-  overflow:hidden;
+  background:var(--ink);color:var(--cream-text);border-radius:22px;
+  padding:clamp(28px,5vw,44px);width:100%;
+  position:relative;overflow:hidden;
 }
-.price-card .eyebrow{color:var(--clay);}
-.price-num{
-  font-family:'Fraunces',serif;font-weight:600;
-  font-size:clamp(1.3rem,4vw,1.6rem);
-  margin-top:6px;
+.price-card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(360px 240px at 100% 0%, rgba(32,201,166,0.22), transparent 70%);
 }
-.price-num small{font-size:0.9rem;font-weight:500;opacity:0.75;}
-.price-note{margin-top:6px;font-size:0.9rem;opacity:0.82;max-width:48ch;}
+.price-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;position:relative;}
+.price-num{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7vw,3.6rem);line-height:1;}
+.price-num small{font-family:var(--font-body);font-size:1rem;font-weight:500;opacity:0.7;}
+.price-note{margin-top:18px;font-size:0.98rem;opacity:0.86;max-width:50ch;position:relative;}
 .flight-note{
-  margin-top:20px;padding-top:18px;border-top:1px solid rgba(251,246,236,0.22);
-  font-size:0.9rem;opacity:0.9;max-width:48ch;
+  margin-top:22px;padding-top:18px;border-top:1px solid var(--line-dark);
+  font-size:0.92rem;opacity:0.82;max-width:50ch;position:relative;
 }
 
-/* only 8 spots */
-.urgency{
-  text-align:center;padding-block:40px;
+/* ---------- marquee urgency ---------- */
+.marquee-band{background:var(--ink);overflow:hidden;padding-block:26px;}
+.marquee{display:flex;overflow:hidden;}
+.marquee-track{
+  display:flex;flex:none;gap:48px;white-space:nowrap;
+  animation:marquee 16s linear infinite;
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(1.6rem,5vw,2.4rem);color:var(--cream-text);
 }
-.urgency h2{font-size:clamp(1.9rem,7vw,2.6rem);}
-.urgency p{margin-top:10px;opacity:0.8;}
+.marquee-track span{display:flex;align-items:center;gap:48px;}
+.marquee-track .accent{color:var(--coral);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion: reduce){ .marquee-track{animation:none;} .marquee{overflow:auto;} }
 
-/* form */
-form{
-  display:flex;flex-direction:column;gap:14px;margin-top:24px;
-}
-.field{display:flex;flex-direction:column;gap:6px;}
-.field label{font-size:0.82rem;font-weight:600;letter-spacing:0.02em;}
+/* ---------- signup form ---------- */
+form{margin-top:30px;display:flex;flex-direction:column;gap:22px;max-width:640px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media (max-width:560px){.row2{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:8px;}
+.field label{font-size:0.82rem;font-weight:600;letter-spacing:0.01em;}
 .field input, .field textarea, .field select{
-  font:inherit;
-  background:var(--cream);
-  color:var(--ink);
-  border:1.5px solid var(--line);
-  border-radius:10px;
-  padding:11px 13px;
-  width:100%;
+  font:inherit;background:transparent;color:var(--ink);
+  border:none;border-bottom:1.5px solid var(--line-light);
+  padding:9px 2px;width:100%;border-radius:0;
 }
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%, var(--ink) 50%),linear-gradient(135deg, var(--ink) 50%,transparent 50%);background-position:calc(100% - 4px) 16px, calc(100% - 0px) 16px;background-size:6px 6px;background-repeat:no-repeat;padding-right:18px;}
 .field input:focus, .field textarea:focus, .field select:focus{
-  outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal);
+  outline:none;border-bottom-color:var(--surf);
 }
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-@media (max-width:480px){.row2{grid-template-columns:1fr;}}
-.btn{
-  font-family:'Work Sans',sans-serif;font-weight:600;
-  border:none;border-radius:999px;
-  padding:14px 22px;cursor:pointer;
-  font-size:0.96rem;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-}
-.btn-primary{background:var(--teal);color:var(--cream);}
-.btn-primary:active{transform:scale(0.99);}
-.btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
-.btn:disabled{opacity:0.5;cursor:not-allowed;}
+.btn-primary[type="submit"]{align-self:flex-start;margin-top:4px;}
+#formError{display:none;color:var(--coral);font-size:0.86rem;margin-top:-10px;}
 
 .summary-box{
-  display:none;
-  margin-top:22px;
-  background:var(--sand);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:18px;
+  display:none;margin-top:26px;background:var(--paper-deep);
+  border-radius:16px;padding:22px;max-width:640px;
 }
 .summary-box.show{display:block;}
+.summary-box p:first-child{font-family:var(--font-display);font-size:1.2rem;font-weight:700;margin-bottom:8px;}
+.summary-box p:last-child{font-size:0.95rem;opacity:0.85;}
 
+/* ---------- footer ---------- */
 footer{
-  padding-block:36px;
-  text-align:center;
-  font-size:0.84rem;
-  opacity:0.65;
+  background:var(--ink);color:var(--cream-text);
+  padding-block:30px;text-align:center;font-size:0.86rem;opacity:0.7;
 }
-footer a{color:var(--teal);text-decoration:none;font-weight:600;}
-
-.hosts-line{
-  margin-top:26px;font-size:0.95rem;opacity:0.85;max-width:50ch;
-}
+footer a{color:var(--surf);text-decoration:none;font-weight:600;}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 
-<svg style="display:none">
-  <symbol id="wave" viewBox="0 0 1200 28" preserveAspectRatio="none">
-    <path d="M0 14 Q 50 0, 100 14 T 200 14 T 300 14 T 400 14 T 500 14 T 600 14 T 700 14 T 800 14 T 900 14 T 1000 14 T 1100 14 T 1200 14 V28 H0 Z"/>
-  </symbol>
-</svg>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-top">
-      <span class="eyebrow">Escapism Trip · Dec 2–8, 2026</span>
-      <span class="badge-girls">8 girls only</span>
+<nav class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="wordmark">Taghazout<span>Escape</span></a>
+    <div class="nav-links">
+      <a href="#included">Included</a>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#price">Price</a>
     </div>
-    <h1>Taghazout<br>girls surf retreat</h1>
-    <p class="sub">No travel buddy needed, zero planning. Just you, the ocean, and 8 new best friends on the Moroccan coast.</p>
-
-    <div class="hero-stats">
-      <div class="stat"><div class="n">7</div><div class="l">days</div></div>
-      <div class="stat"><div class="n">6</div><div class="l">nights</div></div>
-      <div class="stat"><div class="n">4</div><div class="l">surf sessions</div></div>
-      <div class="stat"><div class="n">2</div><div class="l">yoga sessions</div></div>
-    </div>
-
-    <p class="hosts-line">Hosted by the yes girl 🌊 and the calm in the chaos 📋 — two totally opposite besties who've run every girls trip so far, and this one's the biggest yet.</p>
+    <a href="#signup" class="btn btn-nav">Save your spot</a>
   </div>
-  <svg class="seam" viewBox="0 0 1200 28" preserveAspectRatio="none"><use href="#wave" fill="var(--cream)"/></svg>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-main">
+      <span class="badge-girls">8 girls only</span>
+      <h1 class="hero-title">
+        <span class="line">Girls surf</span>
+        <span class="line">retreat</span>
+      </h1>
+      <p class="hero-sub">A week on the Moroccan coast, Dec 2–8, 2026. No travel buddy needed, zero planning — just you, the ocean, and 8 new best friends.</p>
+      <div class="hero-cta">
+        <a href="#signup" class="btn btn-primary">Save your spot</a>
+        <a href="#itinerary" class="btn btn-ghost">See the itinerary</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n" data-target="7">0</span><span class="stat-l">days</span></div>
+      <div class="stat"><span class="stat-n" data-target="6">0</span><span class="stat-l">nights</span></div>
+      <div class="stat"><span class="stat-n" data-target="4">0</span><span class="stat-l">surf sessions</span></div>
+      <div class="stat"><span class="stat-n" data-target="2">0</span><span class="stat-l">yoga sessions</span></div>
+    </div>
+  </div>
+  <p class="hero-hosts wrap">Hosted by the yes girl 🌊 and the calm in the chaos 📋 — two totally opposite besties who've run every girls trip so far, and this one's the biggest yet.</p>
 </header>
 
 <main>
-  <section class="band">
+  <section class="band light skew-top" id="included">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">What's included</span>
-        <h2>Everything's handled</h2>
-      </div>
-      <div class="included">
-        <div class="item"><span class="dot"></span><span>6 nights accommodation + daily breakfast</span></div>
-        <div class="item"><span class="dot"></span><span>4 surf sessions — local instructors & all equipment</span></div>
-        <div class="item"><span class="dot"></span><span>2 chill yoga sessions on the beach</span></div>
-        <div class="item"><span class="dot"></span><span>Paradise Valley road trip & natural pools</span></div>
-        <div class="item"><span class="dot"></span><span>Sandboarding in the dunes</span></div>
-        <div class="item"><span class="dot"></span><span>Golden hour at the skatepark</span></div>
-        <div class="item"><span class="dot"></span><span>1 dance class — music on, inhibitions off</span></div>
-        <div class="item"><span class="dot"></span><span>Welcome dinner + a cooked-together lunch</span></div>
-        <div class="item"><span class="dot"></span><span>Bonfire DJ party, last night</span></div>
-        <div class="item"><span class="dot"></span><span>Airport pickup & all local transport</span></div>
+      <p class="kicker dark">What's included</p>
+      <h2 class="h2">Everything's handled</h2>
+      <div class="included-grid">
+        <div class="included-item"><span class="mark"></span><span>6 nights accommodation + daily breakfast</span></div>
+        <div class="included-item"><span class="mark"></span><span>4 surf sessions — local instructors & all equipment</span></div>
+        <div class="included-item"><span class="mark"></span><span>2 chill yoga sessions on the beach</span></div>
+        <div class="included-item"><span class="mark"></span><span>Paradise Valley road trip & natural pools</span></div>
+        <div class="included-item"><span class="mark"></span><span>Sandboarding in the dunes</span></div>
+        <div class="included-item"><span class="mark"></span><span>Golden hour at the skatepark</span></div>
+        <div class="included-item"><span class="mark"></span><span>1 dance class — music on, inhibitions off</span></div>
+        <div class="included-item"><span class="mark"></span><span>Welcome dinner + a cooked-together lunch</span></div>
+        <div class="included-item"><span class="mark"></span><span>Bonfire DJ party, last night</span></div>
+        <div class="included-item"><span class="mark"></span><span>Airport pickup & all local transport</span></div>
       </div>
     </div>
   </section>
 
-  <section class="band alt">
+  <section class="band dark skew-top" id="itinerary">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Day by day</span>
-        <h2>The itinerary</h2>
-      </div>
+      <p class="kicker">Day by day</p>
+      <h2 class="h2 on-dark">The itinerary</h2>
 
-      <div class="day-row">
-        <div class="daynum">01</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Wed · Dec 2</span><span class="day-title">Hello, Taghazout</span></div>
-          <p class="day-desc">Airport pickup, check-in, meet the girls, then a cosy welcome dinner together.</p>
-          <div class="day-tags"><span class="tag">Airport pickup</span><span class="tag">Check-in</span><span class="tag">Welcome dinner</span></div>
+      <div class="timeline">
+        <div class="day-row">
+          <div class="day-num">01</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Wed · Dec 2</span><span class="day-title">Hello, Taghazout</span></div>
+            <p class="day-desc">Airport pickup, check-in, meet the girls, then a cosy welcome dinner together.</p>
+            <div class="day-tags"><span class="tag">Airport pickup</span><span class="tag">Check-in</span><span class="tag">Welcome dinner</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="day-row">
-        <div class="daynum">02</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Thu · Dec 3</span><span class="day-title">Salt water & sunrise</span></div>
-          <p class="day-desc">A beach yoga flow to wake the body, first surf lesson, golden hour at the skatepark.</p>
-          <div class="day-tags"><span class="tag">Yoga 1/2</span><span class="tag">Surf 1/4</span><span class="tag">Skatepark</span></div>
+        <div class="day-row">
+          <div class="day-num">02</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Thu · Dec 3</span><span class="day-title">Salt water & sunrise</span></div>
+            <p class="day-desc">A beach yoga flow to wake the body, first surf lesson, golden hour at the skatepark.</p>
+            <div class="day-tags"><span class="tag">Yoga 1/2</span><span class="tag">Surf 1/4</span><span class="tag">Skatepark</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="day-row">
-        <div class="daynum">03</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Fri · Dec 4</span><span class="day-title">Cook, surf, dance</span></div>
-          <p class="day-desc">A morning in the ocean, lunch cooked together, then a dance class — no inhibitions allowed.</p>
-          <div class="day-tags"><span class="tag">Surf 2/4</span><span class="tag">Cooking lunch</span><span class="tag">Dance class</span></div>
+        <div class="day-row">
+          <div class="day-num">03</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Fri · Dec 4</span><span class="day-title">Cook, surf, dance</span></div>
+            <p class="day-desc">A morning in the ocean, lunch cooked together, then a dance class — no inhibitions allowed.</p>
+            <div class="day-tags"><span class="tag">Surf 2/4</span><span class="tag">Cooking lunch</span><span class="tag">Dance class</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="day-row">
-        <div class="daynum">04</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Sat · Dec 5</span><span class="day-title">Road trip day</span></div>
-          <p class="day-desc">Playlist on, windows down — a full day in the mountains at Paradise Valley: turquoise pools, palm trees, rock jumps.</p>
-          <div class="day-tags"><span class="tag">Paradise Valley</span><span class="tag">Natural pools</span></div>
+        <div class="day-row">
+          <div class="day-num">04</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Sat · Dec 5</span><span class="day-title">Road trip day</span></div>
+            <p class="day-desc">Playlist on, windows down — a full day in the mountains at Paradise Valley: turquoise pools, palm trees, rock jumps.</p>
+            <div class="day-tags"><span class="tag">Paradise Valley</span><span class="tag">Natural pools</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="day-row">
-        <div class="daynum">05</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Sun · Dec 6</span><span class="day-title">Flow & glow</span></div>
-          <p class="day-desc">Second yoga session, another surf, then a free afternoon — pool, cafés, a nap, or a sunset walk.</p>
-          <div class="day-tags"><span class="tag">Yoga 2/2</span><span class="tag">Surf 3/4</span><span class="tag">Free afternoon</span></div>
+        <div class="day-row">
+          <div class="day-num">05</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Sun · Dec 6</span><span class="day-title">Flow & glow</span></div>
+            <p class="day-desc">Second yoga session, another surf, then a free afternoon — pool, cafés, a nap, or a sunset walk.</p>
+            <div class="day-tags"><span class="tag">Yoga 2/2</span><span class="tag">Surf 3/4</span><span class="tag">Free afternoon</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="day-row">
-        <div class="daynum">06</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Mon · Dec 7</span><span class="day-title">Last night magic</span></div>
-          <p class="day-desc">One final surf, sliding down golden dunes, then closing the week with music and a DJ party.</p>
-          <div class="day-tags"><span class="tag">Surf 4/4</span><span class="tag">Sandboarding</span><span class="tag">DJ party</span></div>
+        <div class="day-row">
+          <div class="day-num">06</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Mon · Dec 7</span><span class="day-title">Last night magic</span></div>
+            <p class="day-desc">One final surf, sliding down golden dunes, then closing the week with music and a DJ party.</p>
+            <div class="day-tags"><span class="tag">Surf 4/4</span><span class="tag">Sandboarding</span><span class="tag">DJ party</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="day-row">
-        <div class="daynum">07</div>
-        <div>
-          <div class="day-meta"><span class="day-date">Tue · Dec 8</span><span class="day-title">See you soon</span></div>
-          <p class="day-desc">One last look at the ocean, big hugs, and an airport drop-off.</p>
-          <div class="day-tags"><span class="tag">Check-out</span><span class="tag">Airport drop-off</span></div>
+        <div class="day-row">
+          <div class="day-num">07</div>
+          <div>
+            <div class="day-meta"><span class="day-date">Tue · Dec 8</span><span class="day-title">See you soon</span></div>
+            <p class="day-desc">One last look at the ocean, big hugs, and an airport drop-off.</p>
+            <div class="day-tags"><span class="tag">Check-out</span><span class="tag">Airport drop-off</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">The investment</span>
-        <h2>Price</h2>
-      </div>
+  <section class="band light skew-top" id="price">
+    <div class="wrap price-wrap">
       <div class="price-card">
-        <span class="eyebrow">Trip package</span>
-        <div class="price-num">2,100 TND <small>/ person</small></div>
+        <div class="price-top">
+          <div>
+            <p class="kicker" style="color:var(--surf)">The investment</p>
+            <div class="price-num">2,100 TND <small>/ person</small></div>
+          </div>
+        </div>
         <p class="price-note">Covers the full 6-night package above: stay, breakfast, 4 surf days, 2 yoga sessions, Paradise Valley, sandboarding, welcome dinner, DJ party & dance class, and all local transport + airport pickup.</p>
         <div class="flight-note">Flights not included. Want us to book yours too? We look up the exact fare on the day you confirm your spot and add it to your total — so you get the most accurate rate.</div>
       </div>
     </div>
   </section>
 
-  <section class="band alt urgency">
-    <div class="wrap">
-      <span class="eyebrow">Only 8 spots</span>
-      <h2>8 girls. 7 days.<br>1 big yes.</h2>
-      <p>Fill out the form below to save your spot before the escape is fully booked.</p>
+  <section class="marquee-band skew-top">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Only 8 spots left <span class="accent">·</span> 8 girls, 7 days, 1 big yes <span class="accent">·</span></span>
+        <span aria-hidden="true">Only 8 spots left <span class="accent">·</span> 8 girls, 7 days, 1 big yes <span class="accent">·</span></span>
+      </div>
     </div>
   </section>
 
-  <section class="band" id="signup">
+  <section class="band light skew-top" id="signup">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Are you in?</span>
-        <h2>Save your spot</h2>
-      </div>
+      <p class="kicker dark">Are you in?</p>
+      <h2 class="h2">Save your spot</h2>
 
       <form id="signupForm">
         <div class="row2">
@@ -428,12 +470,12 @@ footer a{color:var(--teal);text-decoration:none;font-weight:600;}
         </div>
 
         <button type="submit" class="btn btn-primary" id="submitBtn">Save my spot</button>
-        <p id="formError" style="display:none;color:var(--clay);font-size:0.86rem;margin-top:-4px;">Please fill in all required fields.</p>
+        <p id="formError">Please fill in all required fields.</p>
       </form>
 
       <div class="summary-box" id="summaryBox">
-        <p style="font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;margin-bottom:8px;">You're in! 🌊</p>
-        <p style="font-size:0.95rem;opacity:0.85;">Your spot is saved. We'll DM you on Instagram <strong>@sywar.rezgui</strong> to confirm the details.</p>
+        <p>You're in! 🌊</p>
+        <p>Your spot is saved. We'll DM you on Instagram <strong>@sywar.rezgui</strong> to confirm the details.</p>
       </div>
     </div>
   </section>
@@ -500,6 +542,29 @@ footer a{color:var(--teal);text-decoration:none;font-weight:600;}
       box.classList.add('show');
       box.scrollIntoView({behavior:'smooth', block:'nearest'});
     });
+  });
+
+  // nav background on scroll
+  var nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }, {passive:true});
+
+  // hero stat count-up
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.stat-n').forEach(function(el){
+    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    if (reduceMotion){ el.textContent = target; return; }
+    var start = null, duration = 900;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   });
 })();
 </script>
